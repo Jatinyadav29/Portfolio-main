@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import Banner from "../components/Banner";
 import GitHubActivity from "../components/GitHubActivity";
 import RoleRotator from "../components/RoleRotator";
@@ -217,9 +217,6 @@ export default function Home() {
           <Reveal>
             <div className="flex flex-col items-center md:flex-row md:items-baseline md:justify-between">
               <SectionTitle>Projects</SectionTitle>
-              <Link to="/projects" className="-mt-3 mb-5 font-mono text-[11px] text-muted hover:text-fg md:mt-0">
-                All details →
-              </Link>
             </div>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">

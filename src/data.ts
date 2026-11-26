@@ -19,9 +19,12 @@ export const PROFILE = {
 };
 
 export type Project = {
+  slug: string;
   name: string;
   tag: string;
   status?: string;
+  /** one-liner for the home page card */
+  brief: string;
   summary: string;
   points: string[];
   stack: string[];
@@ -32,7 +35,9 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "nexus",
     name: "Nexus",
+    brief: "Booking platform for a real gaming café — I lead the backend.",
     tag: "Full Stack · Backend Lead",
     status: "Live · in active use",
     featured: true,
@@ -53,7 +58,9 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "tradez",
     name: "TradeZ",
+    brief: "Trading analytics dashboard for scalpers and prop-firm traders.",
     tag: "Frontend · Dashboard",
     summary:
       "Dark-themed trading analytics dashboard for scalpers and prop-firm traders.",
@@ -67,7 +74,9 @@ export const PROJECTS: Project[] = [
     repos: [{ label: "Code", href: "https://github.com/Jatinyadav29/TradeZ-frontend" }],
   },
   {
+    slug: "sky-mart",
     name: "Sky Mart",
+    brief: "Glassmorphic e-commerce app with filters and a persistent cart.",
     tag: "Frontend · E-commerce",
     summary:
       "Glassmorphic e-commerce app with search, filters, sorting and a persistent cart.",
@@ -80,7 +89,9 @@ export const PROJECTS: Project[] = [
     repos: [{ label: "Code", href: "https://github.com/Jatinyadav29/Sky-Mart" }],
   },
   {
+    slug: "vastra-by-inayat",
     name: "Vastra by Inayat",
+    brief: "Clothing storefront with code-split routes and typed cart logic.",
     tag: "Frontend · Storefront",
     summary:
       "Clothing storefront with client-side routing, lazy-loaded pages and cart validation.",
@@ -90,6 +101,8 @@ export const PROJECTS: Project[] = [
     repos: [{ label: "Code", href: "https://github.com/Jatinyadav29/vastrabyinayat" }],
   },
 ];
+
+export const getProject = (slug?: string) => PROJECTS.find((p) => p.slug === slug);
 
 export const EXPERIENCE = [
   {
