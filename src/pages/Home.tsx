@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOutletContext } from "react-router";
+import { Link, useOutletContext } from "react-router";
 import Banner from "../components/Banner";
 import GitHubActivity from "../components/GitHubActivity";
 import RoleRotator from "../components/RoleRotator";
@@ -235,33 +235,25 @@ export default function Home() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{p.summary}</p>
-                  {p.featured && (
-                    <ul className="mt-3 space-y-1.5 text-[13.5px] leading-relaxed text-fg/80">
-                      {p.points.map((pt) => (
-                        <li key={pt} className="md:flex md:gap-2">
-                          <span className="mr-1.5 text-accent md:mr-0">›</span>
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{p.brief}</p>
                   <div className="mt-4 flex flex-wrap justify-center gap-1.5 md:justify-start">
-                    {p.stack.map((s) => (
+                    {p.stack.slice(0, 4).map((s) => (
                       <StackPill key={s}>{s}</StackPill>
                     ))}
+                    {p.stack.length > 4 && <StackPill>+{p.stack.length - 4}</StackPill>}
                   </div>
-                  <div className="mt-auto flex flex-wrap justify-center gap-4 pt-5 text-[13px] md:justify-start">
+                  <div className="mt-auto flex flex-wrap items-center justify-center gap-4 pt-5 text-[13px] md:justify-start">
+                    <Link
+                      to={`/projects/${p.slug}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-chip px-3 py-1.5 font-medium text-fg transition-all hover:-translate-y-0.5 hover:border-fg/25"
+                    >
+                      View details →
+                    </Link>
                     {p.live && (
-                      <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-fg hover:text-accent">
+                      <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-muted hover:text-fg">
                         Live <ArrowUpRight />
                       </a>
                     )}
-                    {p.repos.map((r) => (
-                      <a key={r.href} href={r.href} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-muted hover:text-fg">
-                        {r.label} <ArrowUpRight />
-                      </a>
-                    ))}
                   </div>
                 </article>
               </Reveal>
