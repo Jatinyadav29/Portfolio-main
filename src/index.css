@@ -47,6 +47,14 @@ html.lenis {
   scroll-behavior: auto;
 }
 
+/* hide the page scrollbar; scrolling itself still works */
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
