@@ -54,7 +54,7 @@ export default function Home() {
             <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border-4 border-bg bg-chip shadow-xl md:h-28 md:w-28">
               {avatarOk ? (
                 <img
-                  src="/avatar.jpg"
+                  src="/profile.png"
                   alt={PROFILE.name}
                   onError={() => setAvatarOk(false)}
                   className="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
