@@ -277,14 +277,16 @@ export default function Home() {
             <p className="mx-auto mt-2 max-w-md text-sm text-muted">
               Looking for internships and junior backend / full-stack roles. The fastest way to reach me is email.
             </p>
-            <button
-              type="button"
-              onClick={copyEmail}
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PROFILE.email)}`}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Email ${PROFILE.name} via Gmail`}
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-fg px-4 py-2 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5"
             >
-              {copied ? <CheckIcon size={15} /> : <MailIcon size={15} />}
-              {copied ? "Copied!" : PROFILE.email}
-            </button>
+              <MailIcon size={15} />
+              Gmail
+            </a>
           </div>
         </Reveal>
       </div>
