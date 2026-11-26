@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router";
 import CommandPalette, { scrollToSection } from "./components/CommandPalette";
 import NavDock from "./components/NavDock";
+import SeasonCursor from "./components/SeasonCursor";
 import { PROFILE } from "./data";
 
 export type LayoutCtx = { openPalette: () => void };
@@ -41,6 +42,7 @@ export default function RootLayout() {
       </div>
 
 
+      <SeasonCursor />
       <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} />
     </div>
   );

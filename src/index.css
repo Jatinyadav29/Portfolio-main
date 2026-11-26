@@ -84,6 +84,132 @@ body {
   }
 }
 
+/* ───────────── Seasonal cursor ─────────────
+   Change the look of a season by editing its block below:
+   --sc-icon  : the glyph that trails the pointer
+   --sc-glow  : glow / dot colour
+   --sc-anim  : idle animation of the glyph */
+
+@media (pointer: fine) {
+  html.has-season-cursor,
+  html.has-season-cursor * {
+    cursor: none;
+  }
+  /* keep the real text caret where people type */
+  html.has-season-cursor :is(input, textarea, [contenteditable="true"]) {
+    cursor: text;
+  }
+}
+
+.season-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.season-cursor[data-visible="true"] {
+  opacity: 1;
+}
+@media (pointer: coarse) {
+  .season-cursor {
+    display: none;
+  }
+}
+
+/* the seasonal emoji IS the pointer — its centre is the click point */
+.season-cursor__icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 22px;
+  line-height: 1;
+  translate: -50% -50%;
+  filter: drop-shadow(0 0 6px var(--sc-glow));
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.season-cursor__icon::before {
+  content: var(--sc-icon);
+  display: block;
+  animation: var(--sc-anim);
+}
+
+/* states */
+.season-cursor[data-hover="true"] .season-cursor__icon {
+  transform: scale(1.4);
+}
+.season-cursor[data-down="true"] .season-cursor__icon {
+  transform: scale(0.8);
+}
+
+/* seasons */
+.season-cursor[data-season="winter"] {
+  --sc-icon: "❄️";
+  --sc-glow: #9fd8ff;
+  --sc-anim: sc-spin 6s linear infinite;
+}
+.season-cursor[data-season="monsoon"] {
+  --sc-icon: "☁️";
+  --sc-glow: #8fb3d9;
+  --sc-anim: sc-drift 3s ease-in-out infinite;
+}
+.season-cursor[data-season="summer"] {
+  --sc-icon: "☀️";
+  --sc-glow: #ffc23d;
+  --sc-anim: sc-pulse 1.8s ease-in-out infinite, sc-spin 12s linear infinite;
+}
+.season-cursor[data-season="autumn"] {
+  --sc-icon: "🍁";
+  --sc-glow: #ff8a3d;
+  --sc-anim: sc-flutter 2.8s ease-in-out infinite;
+}
+
+@keyframes sc-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+@keyframes sc-drift {
+  0%,
+  100% {
+    translate: -2px 0;
+  }
+  50% {
+    translate: 3px -2px;
+  }
+}
+@keyframes sc-pulse {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.18;
+  }
+}
+@keyframes sc-flutter {
+  0%,
+  100% {
+    rotate: -20deg;
+    translate: 0 0;
+  }
+  25% {
+    rotate: 10deg;
+    translate: 3px 2px;
+  }
+  50% {
+    rotate: 25deg;
+    translate: 0 4px;
+  }
+  75% {
+    rotate: -5deg;
+    translate: -3px 2px;
+  }
+}
+
 /* circular reveal for theme switch (View Transitions API) */
 ::view-transition-old(root),
 ::view-transition-new(root) {
