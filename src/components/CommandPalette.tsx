@@ -14,7 +14,6 @@ import {
   MailIcon,
   MoonIcon,
   SearchIcon,
-  SnowIcon,
 } from "./icons";
 
 type Cmd = { id: string; label: string; group: string; icon: ReactNode; hint?: string; run: () => void };
@@ -31,7 +30,7 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { toggleTheme, toggleSnow } = useTheme();
+  const { toggleTheme } = useTheme();
 
   const go = (id: string) => {
     if (pathname !== "/") navigate(`/#${id}`);
@@ -48,7 +47,6 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
       { id: "act", label: "GitHub activity", group: "Navigate", icon: <ActivityIcon size={16} />, run: () => go("activity") },
       { id: "all", label: "All project details", group: "Navigate", icon: <FolderIcon size={16} />, run: () => navigate("/projects") },
       { id: "theme", label: "Toggle theme", group: "Actions", icon: <MoonIcon size={16} />, hint: "T", run: toggleTheme },
-      { id: "snow", label: "Toggle snow", group: "Actions", icon: <SnowIcon size={16} />, run: toggleSnow },
       {
         id: "email",
         label: "Copy email",

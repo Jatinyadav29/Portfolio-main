@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router";
 import CommandPalette, { scrollToSection } from "./components/CommandPalette";
 import NavDock from "./components/NavDock";
-import { SnowIcon } from "./components/icons";
 import { PROFILE } from "./data";
-import { useTheme } from "./theme";
 
 export type LayoutCtx = { openPalette: () => void };
 
 export default function RootLayout() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const { pathname, hash } = useLocation();
-  const { snow, toggleSnow } = useTheme();
 
   useEffect(() => {
     if (hash) {
@@ -43,17 +40,6 @@ export default function RootLayout() {
         </aside>
       </div>
 
-      <button
-        type="button"
-        onClick={toggleSnow}
-        aria-label={snow ? "Turn snow off" : "Turn snow on"}
-        title={snow ? "Snow: on" : "Snow: off"}
-        className={`fixed bottom-5 left-5 z-40 hidden h-10 w-10 items-center justify-center rounded-full border border-line bg-chip shadow-lg transition-all duration-200 hover:scale-110 sm:flex ${
-          snow ? "text-accent" : "text-muted"
-        }`}
-      >
-        <SnowIcon />
-      </button>
 
       <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} />
     </div>

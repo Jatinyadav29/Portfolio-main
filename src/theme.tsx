@@ -4,19 +4,10 @@ type Theme = "dark" | "light";
 type Ctx = {
   theme: Theme;
   toggleTheme: () => void;
-  snow: boolean;
-  toggleSnow: () => void;
 };
 
 const ThemeCtx = createContext<Ctx | null>(null);
 
-function read<T extends string>(key: string, fallback: T): T {
-  try {
-    return (localStorage.getItem(key) as T) || fallback;
-  } catch {
-    return fallback;
-  }
-}
 function write(key: string, value: string) {
   try {
     localStorage.setItem(key, value);
@@ -29,14 +20,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() =>
     document.documentElement.classList.contains("light") ? "light" : "dark",
   );
-  const [snow, setSnow] = useState(() => read("snow", "on") === "on");
 
   useEffect(() => {
     document.documentElement.classList.toggle("light", theme === "light");
     write("theme", theme);
   }, [theme]);
-
-  useEffect(() => write("snow", snow ? "on" : "off"), [snow]);
 
   const toggleTheme = useCallback(() => {
     const apply = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
@@ -45,10 +33,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       doc.startViewTransition(apply);
     } else apply();
   }, []);
-  const toggleSnow = useCallback(() => setSnow((s) => !s), []);
 
   return (
-    <ThemeCtx.Provider value={{ theme, toggleTheme, snow, toggleSnow }}>{children}</ThemeCtx.Provider>
+    <ThemeCtx.Provider value={{ theme, toggleTheme }}>{children}</ThemeCtx.Provider>
   );
 }
 
