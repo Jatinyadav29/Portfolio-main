@@ -111,7 +111,7 @@ export default function Home() {
 
         {/* about */}
         <Reveal delay={120}>
-          <ul className="mt-8 space-y-2.5 text-center text-[15px] leading-relaxed text-muted md:text-left">
+          <ul className="mx-auto mt-10 max-w-[620px] space-y-4 text-center text-[15px] leading-relaxed text-muted md:mx-0 md:space-y-3 md:text-left">
             {[
               <>
                 Building reliable <b>full-stack MERN apps</b> and <b>backend systems</b> that hold up with real users.
@@ -136,7 +136,7 @@ export default function Home() {
         </Reveal>
 
         {/* socials */}
-        <Reveal delay={160} className="mt-8">
+        <Reveal delay={160} className="mt-10">
           <p className="mb-3 text-center text-sm text-muted md:text-left">
             Here are my <b className="font-medium text-fg">socials</b>
           </p>
@@ -157,7 +157,7 @@ export default function Home() {
         </Reveal>
 
         {/* stack */}
-        <section id="stack" className="mt-14 scroll-mt-8">
+        <section id="stack" className="mt-20 scroll-mt-8">
           <Reveal>
             <SectionTitle>Tech stack</SectionTitle>
             <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
@@ -166,7 +166,7 @@ export default function Home() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={80} className="mt-8">
+          <Reveal delay={80} className="mt-10">
             <SectionTitle>AI tools</SectionTitle>
             <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
               {AI_TOOLS.map((t) => (
@@ -174,7 +174,7 @@ export default function Home() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={120} className="mt-8">
+          <Reveal delay={120} className="mt-10">
             <SectionTitle>Currently learning</SectionTitle>
             <div className="flex flex-wrap justify-center gap-2 md:justify-start">
               {LEARNING.map((l) => (
@@ -190,22 +190,23 @@ export default function Home() {
         </section>
 
         {/* experience */}
-        <section id="experience" className="mt-16 scroll-mt-8">
+        <section id="experience" className="mt-20 scroll-mt-8">
           <Reveal>
             <SectionTitle>Experience & education</SectionTitle>
           </Reveal>
-          <ol className="relative border-line md:ml-1 md:border-l">
+          <ol className="relative space-y-4 border-line md:ml-1 md:space-y-0 md:border-l">
             {EXPERIENCE.map((e, i) => (
               <Reveal key={e.role} delay={i * 80}>
-                <li className="relative pb-8 text-center last:pb-0 md:pl-6 md:text-left">
+                <li className="relative rounded-xl border border-line bg-card p-5 text-center md:rounded-none md:border-0 md:bg-transparent md:p-0 md:pb-10 md:pl-7 md:text-left md:last:pb-0">
                   <span className="absolute top-1.5 hidden md:block -left-[5px] h-2.5 w-2.5 rounded-full border-2 border-bg bg-fg/70" />
-                  <div className="flex flex-col items-center gap-1 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-2">
-                    <h3 className="font-medium">
-                      {e.role} <span className="text-muted">· {e.org}</span>
+                  <div className="flex flex-col items-center gap-1.5 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-2">
+                    <h3 className="font-medium leading-snug">
+                      {e.role}
+                      <span className="block text-sm text-muted md:inline md:text-base"><span className="hidden md:inline"> · </span>{e.org}</span>
                     </h3>
                     <span className="font-mono text-[11px] text-muted">{e.period}</span>
                   </div>
-                  <p className="mt-1 text-sm text-muted">{e.detail}</p>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted">{e.detail}</p>
                 </li>
               </Reveal>
             ))}
@@ -213,7 +214,7 @@ export default function Home() {
         </section>
 
         {/* projects */}
-        <section id="projects" className="mt-16 scroll-mt-8">
+        <section id="projects" className="mt-20 scroll-mt-8">
           <Reveal>
             <div className="flex flex-col items-center md:flex-row md:items-baseline md:justify-between">
               <SectionTitle>Projects</SectionTitle>
@@ -262,7 +263,7 @@ export default function Home() {
         </section>
 
         {/* activity */}
-        <section id="activity" className="mt-16 scroll-mt-8">
+        <section id="activity" className="mt-20 scroll-mt-8">
           <Reveal>
             <SectionTitle>GitHub activity</SectionTitle>
             <GitHubActivity />
@@ -270,7 +271,7 @@ export default function Home() {
         </section>
 
         {/* contact */}
-        <Reveal className="mt-16">
+        <Reveal className="mt-20">
           <div className="rounded-2xl border border-line bg-card p-6 text-center md:p-8">
             <p className="font-hand text-2xl text-muted">let&apos;s build something</p>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted">
