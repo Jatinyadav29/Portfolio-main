@@ -18,7 +18,7 @@ import {
 } from "../components/icons";
 import { EXPERIENCE, LEARNING, PROFILE, PROJECTS } from "../data";
 import type { LayoutCtx } from "../RootLayout";
-import { Chip, Reveal, SectionTitle, StackPill } from "../shared";
+import { Chip, Frame, Reveal, SectionTitle, StackPill } from "../shared";
 import { useClock, useTheme } from "../theme";
 
 export default function Home() {
@@ -66,7 +66,7 @@ export default function Home() {
               )}
             </div>
             <div className="md:pb-1">
-              <h1 className="text-2xl font-semibold tracking-tight md:text-[28px]">{PROFILE.name}</h1>
+              <h1 className="font-serif text-[34px] leading-none md:text-[40px]">{PROFILE.name}</h1>
               <p className="mt-0.5 text-[15px] text-muted">
                 <RoleRotator roles={PROFILE.roles} />
               </p>
@@ -224,10 +224,22 @@ export default function Home() {
             {PROJECTS.map((p, i) => (
               <Reveal key={p.name} delay={i * 70} className={p.featured ? "sm:col-span-2" : ""}>
                 <article className="group relative flex h-full flex-col rounded-xl border border-line bg-card p-5 text-center md:text-left transition-all duration-300 hover:-translate-y-1 hover:border-fg/20 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.5)]">
+                  <Link to={`/projects/${p.slug}`} tabIndex={-1} aria-hidden="true" className="mb-5 block">
+                    <Frame>
+                      <img
+                        src={p.media.cover}
+                        alt=""
+                        loading="lazy"
+                        className={`block w-full bg-fg/5 object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
+                          p.featured ? "aspect-[16/9] sm:aspect-[21/9]" : "aspect-[16/10]"
+                        }`}
+                      />
+                    </Frame>
+                  </Link>
                   <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:justify-between md:gap-3">
                     <div>
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-muted">{p.tag}</span>
-                      <h3 className="mt-1 text-lg font-semibold tracking-tight">{p.name}</h3>
+                      <h3 className="mt-1 font-serif text-2xl leading-tight">{p.name}</h3>
                     </div>
                     {p.status && (
                       <span className="-order-1 flex items-center gap-1.5 rounded-full border border-emerald-500/30 md:order-none bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-500">

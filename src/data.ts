@@ -18,6 +18,23 @@ export const PROFILE = {
   note: "winter build season",
 };
 
+/*
+ * Placeholder media — swap these for real screenshots / demo clips.
+ * Put your files in `public/projects/<slug>/` and use paths like
+ * "/projects/nexus/cover.png" or "/projects/nexus/demo.mp4".
+ */
+const img = (seed: string, w = 1200, h = 750) => `https://picsum.photos/seed/${seed}/${w}/${h}`;
+const PLACEHOLDER_VIDEO = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
+
+export type ProjectMedia = {
+  /** single framed image on the home card */
+  cover: string;
+  /** short demo clip on the detail page */
+  video?: string;
+  /** screenshots on the detail page */
+  images: string[];
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -31,11 +48,17 @@ export type Project = {
   live?: string;
   repos: { label: string; href: string }[];
   featured?: boolean;
+  media: ProjectMedia;
 };
 
 export const PROJECTS: Project[] = [
   {
     slug: "nexus",
+    media: {
+      cover: img("nexus"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("nexus-1"), img("nexus-2"), img("nexus-3")],
+    },
     name: "Nexus",
     brief: "Booking platform for a real gaming café — I lead the backend.",
     tag: "Full Stack · Backend Lead",
@@ -59,6 +82,11 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "tradez",
+    media: {
+      cover: img("tradez"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("tradez-1"), img("tradez-2"), img("tradez-3")],
+    },
     name: "TradeZ",
     brief: "Trading analytics dashboard for scalpers and prop-firm traders.",
     tag: "Frontend · Dashboard",
@@ -75,6 +103,11 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "sky-mart",
+    media: {
+      cover: img("sky-mart"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("sky-mart-1"), img("sky-mart-2"), img("sky-mart-3")],
+    },
     name: "Sky Mart",
     brief: "Glassmorphic e-commerce app with filters and a persistent cart.",
     tag: "Frontend · E-commerce",
@@ -90,6 +123,11 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "vastra-by-inayat",
+    media: {
+      cover: img("vastra-by-inayat"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("vastra-by-inayat-1"), img("vastra-by-inayat-2"), img("vastra-by-inayat-3")],
+    },
     name: "Vastra by Inayat",
     brief: "Clothing storefront with code-split routes and typed cart logic.",
     tag: "Frontend · Storefront",

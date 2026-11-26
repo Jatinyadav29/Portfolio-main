@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link, Navigate, useParams } from "react-router";
 import { ArrowUpRight, GitHubIcon } from "../components/icons";
 import { PROJECTS, getProject } from "../data";
-import { Reveal, SectionTitle, StackPill } from "../shared";
+import { Frame, Reveal, SectionTitle, StackPill } from "../shared";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -24,7 +24,7 @@ export default function ProjectDetail() {
         <div className="mt-8 flex flex-col items-center gap-3 md:flex-row md:items-start md:justify-between">
           <div>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-muted">{project.tag}</span>
-            <h1 className="mt-1.5 text-3xl font-semibold tracking-tight md:text-4xl">{project.name}</h1>
+            <h1 className="mt-2 font-serif text-5xl leading-none md:text-6xl">{project.name}</h1>
           </div>
           {project.status && (
             <span className="-order-1 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-[10.5px] text-emerald-500 md:order-none md:mt-1">
@@ -59,6 +59,26 @@ export default function ProjectDetail() {
         </div>
       </Reveal>
 
+      {/* demo video */}
+      {project.media.video && (
+        <Reveal delay={40} className="mt-10">
+          <Frame>
+            <video
+              className="block aspect-video w-full bg-fg/5 object-cover"
+              src={project.media.video}
+              poster={project.media.cover}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              aria-label={`${project.name} demo`}
+            />
+          </Frame>
+        </Reveal>
+      )}
+
       {/* overview */}
       <Section title="Overview" delay={60}>
         <div className="rounded-xl border border-line bg-card p-5 md:p-6">
@@ -82,6 +102,27 @@ export default function ProjectDetail() {
           ))}
         </ul>
       </Section>
+
+      {/* screenshots */}
+      {project.media.images.length > 0 && (
+        <Section title="Screenshots" delay={120}>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {project.media.images.map((src, i) => (
+              <Frame
+                key={src}
+                className={project.media.images.length % 2 === 1 && i === 0 ? "sm:col-span-2" : ""}
+              >
+                <img
+                  src={src}
+                  alt={`${project.name} screenshot ${i + 1}`}
+                  loading="lazy"
+                  className="block aspect-[16/10] w-full bg-fg/5 object-cover"
+                />
+              </Frame>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* stack */}
       <Section title="Tech stack" delay={140}>
@@ -121,7 +162,7 @@ function PagerLink({ to, label, name, alignEnd }: { to: string; label: string; n
       }`}
     >
       <span className="block font-mono text-[10.5px] uppercase tracking-[0.15em] text-muted">{label}</span>
-      <span className="mt-1 block truncate text-sm font-medium">{name}</span>
+      <span className="mt-1 block truncate font-serif text-xl">{name}</span>
     </Link>
   );
 }
