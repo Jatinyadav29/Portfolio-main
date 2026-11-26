@@ -42,6 +42,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Lenis handles smoothing; native smooth scroll would fight it */
+html.lenis {
+  scroll-behavior: auto;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
