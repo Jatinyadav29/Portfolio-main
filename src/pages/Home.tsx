@@ -194,10 +194,10 @@ export default function Home() {
           <Reveal>
             <SectionTitle>Experience & education</SectionTitle>
           </Reveal>
-          <ol className="relative space-y-4 border-line md:ml-1 md:space-y-0 md:border-l">
+          <ol className="relative space-y-4 border-line md:ml-1 md:space-y-9 md:border-l">
             {EXPERIENCE.map((e, i) => (
               <Reveal key={e.role} delay={i * 80}>
-                <li className="relative rounded-xl border border-line bg-card p-5 text-center md:rounded-none md:border-0 md:bg-transparent md:p-0 md:pb-10 md:pl-7 md:text-left md:last:pb-0">
+                <li className="relative rounded-xl border border-line bg-card p-5 text-center md:rounded-none md:border-0 md:bg-transparent md:p-0 md:pl-7 md:text-left">
                   <span className="absolute top-1.5 hidden md:block -left-[5px] h-2.5 w-2.5 rounded-full border-2 border-bg bg-fg/70" />
                   <div className="flex flex-col items-center gap-1.5 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-2">
                     <h3 className="font-medium leading-snug">
