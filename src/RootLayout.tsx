@@ -28,9 +28,9 @@ export default function RootLayout() {
         <div className="min-w-0 flex-1 pb-28 lg:pb-16">
           <Outlet context={{ openPalette: () => setPaletteOpen(true) } satisfies LayoutCtx} />
 
-          <footer className="mx-5 mt-20 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 font-mono text-[11px] text-muted md:mx-0">
+          <footer className="mx-5 mt-20 flex flex-wrap items-center justify-center gap-3 md:justify-between border-t border-line pt-6 font-mono text-[11px] text-muted md:mx-0">
             <span>© {new Date().getFullYear()} {PROFILE.name}</span>
-            <span>
+            <span className="hidden md:inline">
               Press{" "}
               <kbd className="rounded border border-line px-1 py-0.5 text-[10px]">⌘K</kbd> to navigate
             </span>
