@@ -24,7 +24,7 @@ export default function RootLayout() {
     <div className="min-h-screen bg-bg text-fg transition-colors duration-300">
       <div className="grain-overlay" aria-hidden="true" />
 
-      <div className="mx-auto flex max-w-[860px] gap-6 lg:max-w-[920px]">
+      <div className="mx-auto flex max-w-[860px] lg:max-w-[920px] lg:gap-6">
         <div className="min-w-0 flex-1 pb-28 lg:pb-16">
           <Outlet context={{ openPalette: () => setPaletteOpen(true) } satisfies LayoutCtx} />
 

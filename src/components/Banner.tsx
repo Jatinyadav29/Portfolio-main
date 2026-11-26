@@ -20,11 +20,11 @@ export default function Banner() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-b-2xl bg-linear-to-br from-fg/10 via-fg/5 to-fg/10 md:rounded-2xl">
+    <div className="relative overflow-hidden bg-linear-to-br from-fg/10 via-fg/5 to-fg/10 sm:rounded-b-2xl md:rounded-2xl">
       {!failed ? (
         <video
           ref={ref}
-          className="block h-44 w-full object-cover sm:h-56 md:h-64"
+          className="block h-52 w-full object-cover sm:h-56 md:h-64"
           src={VIDEO_MP4}
           autoPlay
           muted
@@ -35,7 +35,7 @@ export default function Banner() {
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className="h-44 w-full sm:h-56 md:h-64" />
+        <div className="h-52 w-full sm:h-56 md:h-64" />
       )}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-bg to-transparent" />
     </div>

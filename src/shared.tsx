@@ -79,3 +79,17 @@ export function StackPill({ children }: { children: ReactNode }) {
     <span className="rounded-md border border-line bg-card px-2 py-0.5 font-mono text-[10.5px] text-muted">{children}</span>
   );
 }
+
+/** Browser-window style frame for screenshots and demo clips. */
+export function Frame({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return (
+    <div className={`overflow-hidden rounded-lg border border-line bg-chip shadow-[0_8px_30px_-12px_rgba(0,0,0,0.45)] ${className}`}>
+      <div className="flex items-center gap-1.5 border-b border-line px-3 py-2" aria-hidden="true">
+        <span className="h-2 w-2 rounded-full bg-fg/15" />
+        <span className="h-2 w-2 rounded-full bg-fg/15" />
+        <span className="h-2 w-2 rounded-full bg-fg/15" />
+      </div>
+      {children}
+    </div>
+  );
+}

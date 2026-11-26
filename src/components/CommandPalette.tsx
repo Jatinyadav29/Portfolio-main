@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { PROFILE } from "../data";
+import { PROFILE, PROJECTS } from "../data";
 import { useTheme } from "../theme";
 import {
   ActivityIcon,
@@ -45,7 +45,13 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
       { id: "exp", label: "Experience", group: "Navigate", icon: <BriefcaseIcon size={16} />, run: () => go("experience") },
       { id: "proj", label: "Projects", group: "Navigate", icon: <FolderIcon size={16} />, run: () => go("projects") },
       { id: "act", label: "GitHub activity", group: "Navigate", icon: <ActivityIcon size={16} />, run: () => go("activity") },
-      { id: "all", label: "All project details", group: "Navigate", icon: <FolderIcon size={16} />, run: () => navigate("/projects") },
+      ...PROJECTS.map((p) => ({
+        id: `p-${p.slug}`,
+        label: p.name,
+        group: "Projects",
+        icon: <FolderIcon size={16} />,
+        run: () => navigate(`/projects/${p.slug}`),
+      })),
       { id: "theme", label: "Toggle theme", group: "Actions", icon: <MoonIcon size={16} />, hint: "T", run: toggleTheme },
       {
         id: "email",

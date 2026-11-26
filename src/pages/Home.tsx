@@ -18,7 +18,7 @@ import {
 } from "../components/icons";
 import { EXPERIENCE, LEARNING, PROFILE, PROJECTS } from "../data";
 import type { LayoutCtx } from "../RootLayout";
-import { Chip, Reveal, SectionTitle, StackPill } from "../shared";
+import { Chip, Frame, Reveal, SectionTitle, StackPill } from "../shared";
 import { useClock, useTheme } from "../theme";
 
 export default function Home() {
@@ -66,7 +66,7 @@ export default function Home() {
               )}
             </div>
             <div className="md:pb-1">
-              <h1 className="text-2xl font-semibold tracking-tight md:text-[28px]">{PROFILE.name}</h1>
+              <h1 className="font-serif text-[34px] leading-none md:text-[40px]">{PROFILE.name}</h1>
               <p className="mt-0.5 text-[15px] text-muted">
                 <RoleRotator roles={PROFILE.roles} />
               </p>
@@ -111,7 +111,7 @@ export default function Home() {
 
         {/* about */}
         <Reveal delay={120}>
-          <ul className="mt-8 space-y-2.5 text-center text-[15px] leading-relaxed text-muted md:text-left">
+          <ul className="mx-auto mt-10 max-w-[620px] space-y-4 text-center text-[15px] leading-relaxed text-muted md:mx-0 md:space-y-3 md:text-left">
             {[
               <>
                 Building reliable <b>full-stack MERN apps</b> and <b>backend systems</b> that hold up with real users.
@@ -136,7 +136,7 @@ export default function Home() {
         </Reveal>
 
         {/* socials */}
-        <Reveal delay={160} className="mt-8">
+        <Reveal delay={160} className="mt-10">
           <p className="mb-3 text-center text-sm text-muted md:text-left">
             Here are my <b className="font-medium text-fg">socials</b>
           </p>
@@ -157,7 +157,7 @@ export default function Home() {
         </Reveal>
 
         {/* stack */}
-        <section id="stack" className="mt-14 scroll-mt-8">
+        <section id="stack" className="mt-20 scroll-mt-8">
           <Reveal>
             <SectionTitle>Tech stack</SectionTitle>
             <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
@@ -166,7 +166,7 @@ export default function Home() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={80} className="mt-8">
+          <Reveal delay={80} className="mt-10">
             <SectionTitle>AI tools</SectionTitle>
             <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
               {AI_TOOLS.map((t) => (
@@ -174,7 +174,7 @@ export default function Home() {
               ))}
             </div>
           </Reveal>
-          <Reveal delay={120} className="mt-8">
+          <Reveal delay={120} className="mt-10">
             <SectionTitle>Currently learning</SectionTitle>
             <div className="flex flex-wrap justify-center gap-2 md:justify-start">
               {LEARNING.map((l) => (
@@ -190,22 +190,23 @@ export default function Home() {
         </section>
 
         {/* experience */}
-        <section id="experience" className="mt-16 scroll-mt-8">
+        <section id="experience" className="mt-20 scroll-mt-8">
           <Reveal>
             <SectionTitle>Experience & education</SectionTitle>
           </Reveal>
-          <ol className="relative border-line md:ml-1 md:border-l">
+          <ol className="relative space-y-4 border-line md:ml-1 md:space-y-9 md:border-l">
             {EXPERIENCE.map((e, i) => (
               <Reveal key={e.role} delay={i * 80}>
-                <li className="relative pb-8 text-center last:pb-0 md:pl-6 md:text-left">
+                <li className="relative rounded-xl border border-line bg-card p-5 text-center md:rounded-none md:border-0 md:bg-transparent md:p-0 md:pl-7 md:text-left">
                   <span className="absolute top-1.5 hidden md:block -left-[5px] h-2.5 w-2.5 rounded-full border-2 border-bg bg-fg/70" />
-                  <div className="flex flex-col items-center gap-1 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-2">
-                    <h3 className="font-medium">
-                      {e.role} <span className="text-muted">· {e.org}</span>
+                  <div className="flex flex-col items-center gap-1.5 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-2">
+                    <h3 className="font-medium leading-snug">
+                      {e.role}
+                      <span className="block text-sm text-muted md:inline md:text-base"><span className="hidden md:inline"> · </span>{e.org}</span>
                     </h3>
                     <span className="font-mono text-[11px] text-muted">{e.period}</span>
                   </div>
-                  <p className="mt-1 text-sm text-muted">{e.detail}</p>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted">{e.detail}</p>
                 </li>
               </Reveal>
             ))}
@@ -213,23 +214,32 @@ export default function Home() {
         </section>
 
         {/* projects */}
-        <section id="projects" className="mt-16 scroll-mt-8">
+        <section id="projects" className="mt-20 scroll-mt-8">
           <Reveal>
             <div className="flex flex-col items-center md:flex-row md:items-baseline md:justify-between">
               <SectionTitle>Projects</SectionTitle>
-              <Link to="/projects" className="-mt-3 mb-5 font-mono text-[11px] text-muted hover:text-fg md:mt-0">
-                All details →
-              </Link>
             </div>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {PROJECTS.map((p, i) => (
               <Reveal key={p.name} delay={i * 70} className={p.featured ? "sm:col-span-2" : ""}>
                 <article className="group relative flex h-full flex-col rounded-xl border border-line bg-card p-5 text-center md:text-left transition-all duration-300 hover:-translate-y-1 hover:border-fg/20 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.5)]">
+                  <Link to={`/projects/${p.slug}`} tabIndex={-1} aria-hidden="true" className="mb-5 block">
+                    <Frame>
+                      <img
+                        src={p.media.cover}
+                        alt=""
+                        loading="lazy"
+                        className={`block w-full bg-fg/5 object-cover transition-transform duration-500 group-hover:scale-[1.02] ${
+                          p.featured ? "aspect-[16/9] sm:aspect-[21/9]" : "aspect-[16/10]"
+                        }`}
+                      />
+                    </Frame>
+                  </Link>
                   <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:justify-between md:gap-3">
                     <div>
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-muted">{p.tag}</span>
-                      <h3 className="mt-1 text-lg font-semibold tracking-tight">{p.name}</h3>
+                      <h3 className="mt-1 font-serif text-2xl leading-tight">{p.name}</h3>
                     </div>
                     {p.status && (
                       <span className="-order-1 flex items-center gap-1.5 rounded-full border border-emerald-500/30 md:order-none bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-500">
@@ -238,33 +248,25 @@ export default function Home() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{p.summary}</p>
-                  {p.featured && (
-                    <ul className="mt-3 space-y-1.5 text-[13.5px] leading-relaxed text-fg/80">
-                      {p.points.map((pt) => (
-                        <li key={pt} className="md:flex md:gap-2">
-                          <span className="mr-1.5 text-accent md:mr-0">›</span>
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{p.brief}</p>
                   <div className="mt-4 flex flex-wrap justify-center gap-1.5 md:justify-start">
-                    {p.stack.map((s) => (
+                    {p.stack.slice(0, 4).map((s) => (
                       <StackPill key={s}>{s}</StackPill>
                     ))}
+                    {p.stack.length > 4 && <StackPill>+{p.stack.length - 4}</StackPill>}
                   </div>
-                  <div className="mt-auto flex flex-wrap justify-center gap-4 pt-5 text-[13px] md:justify-start">
+                  <div className="mt-auto flex flex-wrap items-center justify-center gap-4 pt-5 text-[13px] md:justify-start">
+                    <Link
+                      to={`/projects/${p.slug}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-line bg-chip px-3 py-1.5 font-medium text-fg transition-all hover:-translate-y-0.5 hover:border-fg/25"
+                    >
+                      View details →
+                    </Link>
                     {p.live && (
-                      <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-fg hover:text-accent">
+                      <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-muted hover:text-fg">
                         Live <ArrowUpRight />
                       </a>
                     )}
-                    {p.repos.map((r) => (
-                      <a key={r.href} href={r.href} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-muted hover:text-fg">
-                        {r.label} <ArrowUpRight />
-                      </a>
-                    ))}
                   </div>
                 </article>
               </Reveal>
@@ -273,7 +275,7 @@ export default function Home() {
         </section>
 
         {/* activity */}
-        <section id="activity" className="mt-16 scroll-mt-8">
+        <section id="activity" className="mt-20 scroll-mt-8">
           <Reveal>
             <SectionTitle>GitHub activity</SectionTitle>
             <GitHubActivity />
@@ -281,20 +283,22 @@ export default function Home() {
         </section>
 
         {/* contact */}
-        <Reveal className="mt-16">
+        <Reveal className="mt-20">
           <div className="rounded-2xl border border-line bg-card p-6 text-center md:p-8">
             <p className="font-hand text-2xl text-muted">let&apos;s build something</p>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted">
               Looking for internships and junior backend / full-stack roles. The fastest way to reach me is email.
             </p>
-            <button
-              type="button"
-              onClick={copyEmail}
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PROFILE.email)}`}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Email ${PROFILE.name} via Gmail`}
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-fg px-4 py-2 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5"
             >
-              {copied ? <CheckIcon size={15} /> : <MailIcon size={15} />}
-              {copied ? "Copied!" : PROFILE.email}
-            </button>
+              <MailIcon size={15} />
+              Gmail
+            </a>
           </div>
         </Reveal>
       </div>

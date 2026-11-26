@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -32,9 +32,10 @@
   --color-chip: var(--chip);
   --color-accent: var(--accent);
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --font-hand: "Caveat", cursive;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
 html {
@@ -45,6 +46,14 @@ html {
 /* Lenis handles smoothing; native smooth scroll would fight it */
 html.lenis {
   scroll-behavior: auto;
+}
+
+/* hide the page scrollbar; scrolling itself still works */
+html {
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {

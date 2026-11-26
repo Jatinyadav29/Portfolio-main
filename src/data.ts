@@ -18,21 +18,49 @@ export const PROFILE = {
   note: "winter build season",
 };
 
+/*
+ * Placeholder media — swap these for real screenshots / demo clips.
+ * Put your files in `public/projects/<slug>/` and use paths like
+ * "/projects/nexus/cover.png" or "/projects/nexus/demo.mp4".
+ */
+const img = (seed: string, w = 1200, h = 750) => `https://picsum.photos/seed/${seed}/${w}/${h}`;
+const PLACEHOLDER_VIDEO = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
+
+export type ProjectMedia = {
+  /** single framed image on the home card */
+  cover: string;
+  /** short demo clip on the detail page */
+  video?: string;
+  /** screenshots on the detail page */
+  images: string[];
+};
+
 export type Project = {
+  slug: string;
   name: string;
   tag: string;
   status?: string;
+  /** one-liner for the home page card */
+  brief: string;
   summary: string;
   points: string[];
   stack: string[];
   live?: string;
   repos: { label: string; href: string }[];
   featured?: boolean;
+  media: ProjectMedia;
 };
 
 export const PROJECTS: Project[] = [
   {
+    slug: "nexus",
+    media: {
+      cover: img("nexus"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("nexus-1"), img("nexus-2"), img("nexus-3")],
+    },
     name: "Nexus",
+    brief: "Booking platform for a real gaming café — I lead the backend.",
     tag: "Full Stack · Backend Lead",
     status: "Live · in active use",
     featured: true,
@@ -53,7 +81,14 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: "tradez",
+    media: {
+      cover: img("tradez"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("tradez-1"), img("tradez-2"), img("tradez-3")],
+    },
     name: "TradeZ",
+    brief: "Trading analytics dashboard for scalpers and prop-firm traders.",
     tag: "Frontend · Dashboard",
     summary:
       "Dark-themed trading analytics dashboard for scalpers and prop-firm traders.",
@@ -67,7 +102,14 @@ export const PROJECTS: Project[] = [
     repos: [{ label: "Code", href: "https://github.com/Jatinyadav29/TradeZ-frontend" }],
   },
   {
+    slug: "sky-mart",
+    media: {
+      cover: img("sky-mart"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("sky-mart-1"), img("sky-mart-2"), img("sky-mart-3")],
+    },
     name: "Sky Mart",
+    brief: "Glassmorphic e-commerce app with filters and a persistent cart.",
     tag: "Frontend · E-commerce",
     summary:
       "Glassmorphic e-commerce app with search, filters, sorting and a persistent cart.",
@@ -80,7 +122,14 @@ export const PROJECTS: Project[] = [
     repos: [{ label: "Code", href: "https://github.com/Jatinyadav29/Sky-Mart" }],
   },
   {
+    slug: "vastra-by-inayat",
+    media: {
+      cover: img("vastra-by-inayat"),
+      video: PLACEHOLDER_VIDEO,
+      images: [img("vastra-by-inayat-1"), img("vastra-by-inayat-2"), img("vastra-by-inayat-3")],
+    },
     name: "Vastra by Inayat",
+    brief: "Clothing storefront with code-split routes and typed cart logic.",
     tag: "Frontend · Storefront",
     summary:
       "Clothing storefront with client-side routing, lazy-loaded pages and cart validation.",
@@ -90,6 +139,8 @@ export const PROJECTS: Project[] = [
     repos: [{ label: "Code", href: "https://github.com/Jatinyadav29/vastrabyinayat" }],
   },
 ];
+
+export const getProject = (slug?: string) => PROJECTS.find((p) => p.slug === slug);
 
 export const EXPERIENCE = [
   {
