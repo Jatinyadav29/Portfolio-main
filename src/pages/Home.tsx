@@ -42,7 +42,7 @@ export default function Home() {
 
       <div className="px-5 md:px-0">
         {/* profile row */}
-        <Reveal className="relative -mt-8 flex items-end justify-between gap-4 md:-mt-10">
+        <Reveal className="relative -mt-12 flex flex-col items-center gap-3 text-center md:-mt-10 md:flex-row md:items-end md:justify-between md:gap-4 md:text-left">
           <span className="font-hand pointer-events-none absolute -top-2 -left-36 hidden -rotate-6 text-xl text-muted xl:block">
             {PROFILE.note} ❄
             <svg className="mt-0.5 ml-3" width="90" height="10" viewBox="0 0 90 10" aria-hidden="true">
@@ -50,7 +50,7 @@ export default function Home() {
             </svg>
           </span>
 
-          <div className="flex items-end gap-4">
+          <div className="flex flex-col items-center gap-3 md:flex-row md:items-end md:gap-4">
             <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border-4 border-bg bg-chip shadow-xl md:h-28 md:w-28">
               {avatarOk ? (
                 <img
@@ -65,7 +65,7 @@ export default function Home() {
                 </span>
               )}
             </div>
-            <div className="pb-1">
+            <div className="md:pb-1">
               <h1 className="text-2xl font-semibold tracking-tight md:text-[28px]">{PROFILE.name}</h1>
               <p className="mt-0.5 text-[15px] text-muted">
                 <RoleRotator roles={PROFILE.roles} />
@@ -73,7 +73,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex shrink-0 items-center gap-2 pb-2">
+          <div className="absolute top-14 right-0 flex shrink-0 items-center gap-2 md:static md:pb-2">
             <button
               type="button"
               onClick={openPalette}
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
         </Reveal>
 
-        <Reveal delay={60} className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11.5px] text-muted">
+        <Reveal delay={60} className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 font-mono md:justify-start text-[11.5px] text-muted">
           <span className="flex items-center gap-1">
             <PinIcon /> {PROFILE.location}
           </span>
@@ -111,7 +111,7 @@ export default function Home() {
 
         {/* about */}
         <Reveal delay={120}>
-          <ul className="mt-8 space-y-2.5 text-[15px] leading-relaxed text-muted">
+          <ul className="mt-8 space-y-2.5 text-center text-[15px] leading-relaxed text-muted md:text-left">
             {[
               <>
                 Building reliable <b>full-stack MERN apps</b> and <b>backend systems</b> that hold up with real users.
@@ -127,8 +127,8 @@ export default function Home() {
                 Based in <b>Delhi, India</b> · BCA ’26, GGSIPU.
               </>,
             ].map((line, i) => (
-              <li key={i} className="flex gap-3 [&_b]:font-medium [&_b]:text-fg">
-                <span className="mt-[11px] h-1 w-1 shrink-0 rounded-full bg-muted/60" />
+              <li key={i} className="md:flex md:gap-3 [&_b]:font-medium [&_b]:text-fg">
+                <span className="mt-[11px] hidden h-1 w-1 md:block shrink-0 rounded-full bg-muted/60" />
                 <span>{line}</span>
               </li>
             ))}
@@ -137,10 +137,10 @@ export default function Home() {
 
         {/* socials */}
         <Reveal delay={160} className="mt-8">
-          <p className="mb-3 text-sm text-muted">
+          <p className="mb-3 text-center text-sm text-muted md:text-left">
             Here are my <b className="font-medium text-fg">socials</b>
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2 md:justify-start">
             <Chip href={PROFILE.github} icon={<GitHubIcon size={15} />}>
               GitHub
             </Chip>
@@ -160,7 +160,7 @@ export default function Home() {
         <section id="stack" className="mt-14 scroll-mt-8">
           <Reveal>
             <SectionTitle>Tech stack</SectionTitle>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
               {STACK.map((t) => (
                 <TechTile key={t.name} tech={t} />
               ))}
@@ -168,7 +168,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={80} className="mt-8">
             <SectionTitle>AI tools</SectionTitle>
-            <div className="flex flex-wrap gap-2.5">
+            <div className="flex flex-wrap justify-center gap-2.5 md:justify-start">
               {AI_TOOLS.map((t) => (
                 <TechTile key={t.name} tech={t} />
               ))}
@@ -176,7 +176,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={120} className="mt-8">
             <SectionTitle>Currently learning</SectionTitle>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center gap-2 md:justify-start">
               {LEARNING.map((l) => (
                 <span
                   key={l}
@@ -194,12 +194,12 @@ export default function Home() {
           <Reveal>
             <SectionTitle>Experience & education</SectionTitle>
           </Reveal>
-          <ol className="relative ml-1 border-l border-line">
+          <ol className="relative border-line md:ml-1 md:border-l">
             {EXPERIENCE.map((e, i) => (
               <Reveal key={e.role} delay={i * 80}>
-                <li className="relative pb-8 pl-6 last:pb-0">
-                  <span className="absolute top-1.5 -left-[5px] h-2.5 w-2.5 rounded-full border-2 border-bg bg-fg/70" />
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <li className="relative pb-8 text-center last:pb-0 md:pl-6 md:text-left">
+                  <span className="absolute top-1.5 hidden md:block -left-[5px] h-2.5 w-2.5 rounded-full border-2 border-bg bg-fg/70" />
+                  <div className="flex flex-col items-center gap-1 md:flex-row md:flex-wrap md:items-baseline md:justify-between md:gap-2">
                     <h3 className="font-medium">
                       {e.role} <span className="text-muted">· {e.org}</span>
                     </h3>
@@ -215,9 +215,9 @@ export default function Home() {
         {/* projects */}
         <section id="projects" className="mt-16 scroll-mt-8">
           <Reveal>
-            <div className="flex items-baseline justify-between">
+            <div className="flex flex-col items-center md:flex-row md:items-baseline md:justify-between">
               <SectionTitle>Projects</SectionTitle>
-              <Link to="/projects" className="mb-5 font-mono text-[11px] text-muted hover:text-fg">
+              <Link to="/projects" className="-mt-3 mb-5 font-mono text-[11px] text-muted hover:text-fg md:mt-0">
                 All details →
               </Link>
             </div>
@@ -225,14 +225,14 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2">
             {PROJECTS.map((p, i) => (
               <Reveal key={p.name} delay={i * 70} className={p.featured ? "sm:col-span-2" : ""}>
-                <article className="group relative flex h-full flex-col rounded-xl border border-line bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-fg/20 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.5)]">
-                  <div className="flex items-start justify-between gap-3">
+                <article className="group relative flex h-full flex-col rounded-xl border border-line bg-card p-5 text-center md:text-left transition-all duration-300 hover:-translate-y-1 hover:border-fg/20 hover:shadow-[0_10px_40px_-12px_rgba(0,0,0,0.5)]">
+                  <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:justify-between md:gap-3">
                     <div>
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-muted">{p.tag}</span>
                       <h3 className="mt-1 text-lg font-semibold tracking-tight">{p.name}</h3>
                     </div>
                     {p.status && (
-                      <span className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-500">
+                      <span className="-order-1 flex items-center gap-1.5 rounded-full border border-emerald-500/30 md:order-none bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-500">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                         {p.status}
                       </span>
@@ -242,19 +242,19 @@ export default function Home() {
                   {p.featured && (
                     <ul className="mt-3 space-y-1.5 text-[13.5px] leading-relaxed text-fg/80">
                       {p.points.map((pt) => (
-                        <li key={pt} className="flex gap-2">
-                          <span className="text-accent">›</span>
+                        <li key={pt} className="md:flex md:gap-2">
+                          <span className="mr-1.5 text-accent md:mr-0">›</span>
                           {pt}
                         </li>
                       ))}
                     </ul>
                   )}
-                  <div className="mt-4 flex flex-wrap gap-1.5">
+                  <div className="mt-4 flex flex-wrap justify-center gap-1.5 md:justify-start">
                     {p.stack.map((s) => (
                       <StackPill key={s}>{s}</StackPill>
                     ))}
                   </div>
-                  <div className="mt-auto flex flex-wrap gap-4 pt-5 text-[13px]">
+                  <div className="mt-auto flex flex-wrap justify-center gap-4 pt-5 text-[13px] md:justify-start">
                     {p.live && (
                       <a href={p.live} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-fg hover:text-accent">
                         Live <ArrowUpRight />

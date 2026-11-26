@@ -41,7 +41,7 @@ export function Reveal({ children, delay = 0, className }: { children: ReactNode
 }
 
 export function SectionTitle({ children }: { children: ReactNode }) {
-  return <h2 className="mb-5 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-muted">{children}</h2>;
+  return <h2 className="mb-5 text-center font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-muted md:text-left">{children}</h2>;
 }
 
 export function Chip({

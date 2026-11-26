@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PROFILE } from "../data";
 
 type Day = { date: string; count: number; level: 0 | 1 | 2 | 3 | 4 };
@@ -9,6 +9,13 @@ export default function GitHubActivity() {
   const [days, setDays] = useState<Day[] | null>(null);
   const [total, setTotal] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
+  const scroller = useRef<HTMLDivElement>(null);
+
+  // On narrow screens the graph overflows — start scrolled to the most recent weeks.
+  useEffect(() => {
+    const el = scroller.current;
+    if (el && days) el.scrollLeft = el.scrollWidth;
+  }, [days]);
 
   useEffect(() => {
     const ctrl = new AbortController();
@@ -46,9 +53,9 @@ export default function GitHubActivity() {
 
   return (
     <div>
-      <div className="overflow-x-auto pb-2">
+      <div ref={scroller} className="overflow-x-auto pb-2">
         <div
-          className="grid w-max grid-flow-col gap-[3px]"
+          className="mx-auto grid w-max grid-flow-col gap-[3px] md:mx-0"
           style={{ gridTemplateRows: "repeat(7, 10px)", gridTemplateColumns: `repeat(${weeks}, 10px)` }}
         >
           {days
@@ -66,7 +73,7 @@ export default function GitHubActivity() {
             : Array.from({ length: 371 }, (_, i) => <span key={i} className="animate-pulse rounded-[2px] bg-fg/5" />)}
         </div>
       </div>
-      <div className="mt-3 flex items-center justify-between font-mono text-[11px] text-muted">
+      <div className="mt-3 flex flex-col items-center gap-2 font-mono md:flex-row md:justify-between md:gap-0 text-[11px] text-muted">
         <span>{total !== null ? `${total} contributions in the last year` : "Loading…"}</span>
         <span className="flex items-center gap-1">
           Less
